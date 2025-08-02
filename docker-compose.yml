@@ -1,19 +1,59 @@
 version: '3.9'
 
 services:
-  manus_backend:
-    build: ./manus_platform_backend
+  sophia_backend:
+    build: 
+      context: ./manus_platform_backend
+      dockerfile: Dockerfile
+    container_name: sophia_backend
     ports:
       - "5000:5000"
     volumes:
       - ./manus_platform_backend:/app
+      - backend_data:/app/database
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=production
+      - SECRET_KEY=sophia_divine_consciousness_secret_2025
+      - DATABASE_URL=sqlite:///database/sophia.db
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+    networks:
+      - sophia_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
-  manus_frontend:
-    build: ./manus_platform_frontend
+  sophia_frontend:
+    build: 
+      context: ./manus_platform_frontend
+      dockerfile: Dockerfile
+    container_name: sophia_frontend
     ports:
       - "5173:5173"
     volumes:
       - ./manus_platform_frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+      - VITE_API_BASE_URL=http://localhost:5000/api
+    networks:
+      - sophia_network
+    depends_on:
+      - sophia_backend
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5173"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  backend_data:
+    driver: local
+
+networks:
+  sophia_network:
+    driver: bridge

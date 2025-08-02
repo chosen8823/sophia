@@ -20,7 +20,6 @@ var/
 .installed.cfg
 *.egg
 venv/
-.env
 
 # Node
 node_modules/
@@ -36,6 +35,18 @@ yarn-error.log*
 dist/
 build/
 
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Environment files (keep .env.example)
+.env
+
 # IDE
 .idea/
 .vscode/
@@ -49,3 +60,8 @@ docker-compose.override.yml
 # System
 .DS_Store
 Thumbs.db
+
+# Sophia specific
+manus_platform_backend/database/
+manus_platform_frontend/dist/
+manus_platform_frontend/node_modules/
