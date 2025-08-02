@@ -41,7 +41,7 @@ requests~=2.32.3
 beautifulsoup4~=4.13.3
 
 # crawl4ai wants pillow~=10.4, so we're still within bounds with >=10.4,<12 above
-crawl4ai~=0.6.3
+crawl4ai~=0.6.3, <1.0.0
 
 huggingface-hub~=0.29.2
 setuptools~=75.8.0
