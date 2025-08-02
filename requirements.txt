@@ -10,7 +10,10 @@ tiktoken~=0.9.0
 
 html2text~=2024.2.26
 gymnasium~=1.1.1
-pillow~=10.1,<12
+
+# The big fix: Widen Pillow's range to allow both browsergym and crawl4ai requirements
+pillow>=10.4,<12
+
 browsergym~=0.13.3
 uvicorn~=0.34.0
 unidiff~=0.7.5
@@ -36,6 +39,8 @@ boto3~=1.37.18
 
 requests~=2.32.3
 beautifulsoup4~=4.13.3
+
+# crawl4ai wants pillow~=10.4, so we're still within bounds with >=10.4,<12 above
 crawl4ai~=0.6.3
 
 huggingface-hub~=0.29.2
