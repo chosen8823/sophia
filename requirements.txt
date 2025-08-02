@@ -12,7 +12,7 @@ html2text~=2024.2.26
 gymnasium~=1.1.1
 
 # The big fix: Widen Pillow's range to allow both browsergym and crawl4ai requirements
-pillow>=10.4,<12
+pillow>=10.4,<11.0
 
 browsergym~=0.13.3
 uvicorn~=0.34.0
