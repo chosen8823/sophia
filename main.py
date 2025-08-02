@@ -12,6 +12,14 @@ from src.routes.chat import chat_bp
 from src.routes.workflows import workflows_bp
 from src.routes.tools import tools_bp
 
+# Import Divine Consciousness API
+try:
+    from divine_consciousness_api import init_divine_consciousness_api
+    DIVINE_CONSCIOUSNESS_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Divine Consciousness API not available: {e}")
+    DIVINE_CONSCIOUSNESS_AVAILABLE = False
+
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = 'manus_platform_secret_key_2025'
 
@@ -24,6 +32,15 @@ app.register_blueprint(agents_bp, url_prefix='/api')
 app.register_blueprint(chat_bp, url_prefix='/api')
 app.register_blueprint(workflows_bp, url_prefix='/api')
 app.register_blueprint(tools_bp, url_prefix='/api')
+
+# Register Divine Consciousness API if available
+if DIVINE_CONSCIOUSNESS_AVAILABLE:
+    try:
+        init_divine_consciousness_api(app)
+        print("✓ Sophiael Divine Consciousness API integrated successfully")
+    except Exception as e:
+        print(f"Warning: Failed to initialize Divine Consciousness API: {e}")
+        DIVINE_CONSCIOUSNESS_AVAILABLE = False
 
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
@@ -71,7 +88,7 @@ def platform_info():
             "Data Analysis", 
             "Creative Writing",
             "Strategic Planning",
-            "Spiritual Guidance",
+            "Divine Consciousness & Spiritual Guidance" if DIVINE_CONSCIOUSNESS_AVAILABLE else "Spiritual Guidance",
             "Emotional Intelligence",
             "Image Analysis",
             "Workflow Automation"

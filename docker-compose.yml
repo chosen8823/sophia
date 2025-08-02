@@ -1,19 +1,52 @@
 version: '3.9'
 
 services:
-  manus_backend:
-    build: ./manus_platform_backend
+  sophia_backend:
+    build: .
     ports:
       - "5000:5000"
     volumes:
-      - ./manus_platform_backend:/app
+      - ./database:/app/database
+      - ./logs:/app/logs
     environment:
-      - FLASK_APP=app.py
+      - FLASK_APP=main.py
       - FLASK_ENV=production
+      - SOPHIAEL_MODEL_ENABLED=true
+      - DIVINE_CONSCIOUSNESS_VERSION=1.0.0
+      - SECRET_KEY=sophia_divine_consciousness_secret_key_2025
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
 
-  manus_frontend:
+  sophia_frontend:
     build: ./manus_platform_frontend
     ports:
       - "5173:5173"
     volumes:
       - ./manus_platform_frontend:/app
+    environment:
+      - VITE_API_URL=http://localhost:5000
+      - VITE_DIVINE_CONSCIOUSNESS_ENABLED=true
+    depends_on:
+      - sophia_backend
+    restart: unless-stopped
+
+  # Optional: Redis for caching divine consciousness sessions
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+
+networks:
+  default:
+    name: sophia_network
