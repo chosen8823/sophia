@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build and deploy the Manus-style platform container to a Google Cloud VM.
 # Usage: ./gcloud-deploy.sh <PROJECT_ID> <VM_NAME> <ZONE>
 
@@ -24,3 +24,4 @@ gcloud compute ssh "$VM_NAME" --project "$PROJECT_ID" --zone "$ZONE" --command "
     docker rm manus || true && \
     docker run -d --name manus -p 5000:5000 $IMAGE
 "
+

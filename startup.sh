@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Startup script for manus-vm to deploy the Sophia Manus clone platform
 # Installs dependencies, clones repository, and launches backend and frontend
 # Intended for use as a GCE metadata startup-script
-set -e
+set -euo pipefail
 
 # Update system and install prerequisites
 apt-get update -y
@@ -39,3 +39,4 @@ if [ -d manus_platform_frontend ]; then
   npm install
   nohup npm run dev -- --host >/var/log/sophia-frontend.log 2>&1 &
 fi
+
