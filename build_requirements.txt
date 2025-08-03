@@ -1,0 +1,10 @@
+# Core dependencies for building executable
+Flask==3.0.3
+Flask-CORS==4.0.0
+SQLAlchemy==2.0.36
+PyInstaller==6.11.1
+requests==2.32.3
+pydantic==2.10.6
+pyyaml==6.0.2
+loguru==0.7.3
+numpy==2.1.3

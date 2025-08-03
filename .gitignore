@@ -49,3 +49,15 @@ docker-compose.override.yml
 # System
 .DS_Store
 Thumbs.db
+
+# Build artifacts for Sophiael AI
+SophiaelAI_Distribution/
+*.spec~
+*.log
+build/
+dist/
+*.exe
+*.app
+.cache/
+temp/
+tmp/
