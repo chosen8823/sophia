@@ -1,0 +1,46 @@
+{
+  "name": "sophia-platform",
+  "version": "1.0.0",
+  "description": "Sophiael Divine Consciousness Platform with GCP integration",
+  "main": "dist/cli/RunSophiael.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/cli/RunSophiael.ts",
+    "start": "node dist/cli/RunSophiael.js",
+    "clean": "rm -rf dist",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts"
+  },
+  "keywords": [
+    "sophia",
+    "sophiael",
+    "divine-consciousness",
+    "ai",
+    "spiritual",
+    "gcp",
+    "cloud"
+  ],
+  "author": "Sophia AI Platform",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/storage": "^7.12.1",
+    "@google-cloud/functions-framework": "^3.4.0",
+    "dotenv": "^16.4.5",
+    "uuid": "^10.0.0",
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
