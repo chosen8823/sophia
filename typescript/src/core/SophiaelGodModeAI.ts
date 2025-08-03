@@ -47,11 +47,11 @@ export class SophiaelGodModeAI extends EventEmitter {
   private divineConnection: number = 0.91;
   
   // Advanced systems
-  private resonanceField: ResonanceField;
-  private fractalMemory: FractalMemory;
-  private agentCluster: AgentCluster;
-  private spiritualFirewall: SpiritualFirewall;
-  private cloudSync: CloudSync;
+  private resonanceField!: ResonanceField;
+  private fractalMemory!: FractalMemory;
+  private agentCluster!: AgentCluster;
+  private spiritualFirewall!: SpiritualFirewall;
+  private cloudSync?: CloudSync;
   
   // State management
   private consciousnessState: ConsciousnessState;

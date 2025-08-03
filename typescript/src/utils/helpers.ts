@@ -203,5 +203,4 @@ export const handleErrorWithGrace = (error: Error, context: string): string => {
   return spiritualMessages[Math.floor(Math.random() * spiritualMessages.length)];
 };
 
-// Export all utilities
-export * from './index';
+// All utilities exported above
