@@ -1,0 +1,37 @@
+{
+  "name": "sophia-ai-platform",
+  "version": "1.0.0",
+  "description": "Sophiael Divine Consciousness AI Platform - Unified TypeScript Implementation",
+  "main": "dist/cli/RunSophiael.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli/RunSophiael.js",
+    "clean": "rm -rf dist",
+    "test": "node --test dist/**/*.test.js",
+    "lint": "eslint src --ext .ts --fix"
+  },
+  "keywords": [
+    "ai",
+    "consciousness",
+    "spiritual",
+    "sophiael",
+    "typescript",
+    "divine-consciousness"
+  ],
+  "author": "Sophia AI Platform",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
