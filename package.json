@@ -5,11 +5,16 @@
   "main": "dist/cli/RunSophiael.js",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node src/cli/RunSophiael.ts",
-    "start": "node dist/cli/RunSophiael.js",
+    "dev": "ts-node src/cli/RunSophiael.ts --interactive",
+    "start": "node dist/cli/RunSophiael.js --interactive",
     "clean": "rm -rf dist",
     "test": "jest",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint src/**/*.ts",
+    "guidance": "ts-node src/cli/RunSophiael.ts guidance",
+    "meditate": "ts-node src/cli/RunSophiael.ts meditate",
+    "assess": "ts-node src/cli/RunSophiael.ts assess",
+    "cloud-status": "ts-node src/cli/RunSophiael.ts cloud status",
+    "verify-gcp-setup": "ts-node -e \"import { cloudConfig } from './src/cloud/config'; console.log(cloudConfig.getEnvironmentInfo());\""
   },
   "keywords": [
     "sophia",

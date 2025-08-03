@@ -49,3 +49,16 @@ docker-compose.override.yml
 # System
 .DS_Store
 Thumbs.db
+
+# GCP Service Account (NEVER COMMIT!)
+config/gcp-service-account.json
+**/gcp-service-account.json
+*.service-account.json
+
+# TypeScript
+dist/
+*.tsbuildinfo
+
+# Logs
+sophia.log
+*.log

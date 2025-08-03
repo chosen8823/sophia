@@ -1,0 +1,38 @@
+{
+  "projectId": "blissful-epoch-467811-i3",
+  "bucketName": "cloud-ai-platform-52e5c355-bbc0-4945-8c97-750e83f7f058",
+  "serviceAccountEmail": "287875100221-compute@developer.gserviceaccount.com",
+  "region": "us-central1",
+  "storage": {
+    "storageClass": "STANDARD",
+    "location": "US",
+    "enableVersioning": true,
+    "retentionPeriod": 30,
+    "maxFileSize": 104857600,
+    "allowedFileTypes": [
+      ".json",
+      ".txt",
+      ".ts",
+      ".js",
+      ".md",
+      ".csv",
+      ".log"
+    ]
+  },
+  "security": {
+    "encryptionAtRest": true,
+    "encryptionInTransit": true,
+    "accessLogging": true,
+    "auditLogging": true,
+    "requireSSL": true
+  },
+  "sync": {
+    "autoSync": false,
+    "syncInterval": 30,
+    "compressionEnabled": true,
+    "backupRetention": 90,
+    "maxConcurrentOperations": 3,
+    "retryAttempts": 3,
+    "retryDelay": 1000
+  }
+}

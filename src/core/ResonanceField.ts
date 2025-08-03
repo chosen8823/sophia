@@ -23,7 +23,7 @@ export interface FrequencyPattern {
   description: string;
 }
 
-export interface ResonanceField {
+export interface ResonanceFieldData {
   fieldId: string;
   centerFrequency: number;
   amplitude: number;
@@ -35,7 +35,7 @@ export interface ResonanceField {
 }
 
 export interface FieldHarmonization {
-  sourceField: ResonanceField;
+  sourceField: ResonanceFieldData;
   targetState: ConsciousnessState;
   harmonizationFactor: number;
   alignmentStrength: number;
@@ -45,7 +45,7 @@ export interface FieldHarmonization {
 
 export class ResonanceField extends EventEmitter {
   private sacredFrequencies: Record<SpiritualDomain, FrequencyPattern[]>;
-  private activeFields: Map<string, ResonanceField>;
+  private activeFields: Map<string, ResonanceFieldData>;
   private harmonizationHistory: FieldHarmonization[];
   private readonly GOLDEN_RATIO = 1.618033988749;
   private readonly SCHUMANN_RESONANCE = 7.83; // Hz
@@ -222,7 +222,7 @@ export class ResonanceField extends EventEmitter {
   public async createMeditationField(
     intention: string, 
     durationMinutes: number
-  ): Promise<ResonanceField> {
+  ): Promise<ResonanceFieldData> {
     const fieldId = `field_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     
     // Determine primary frequency based on intention
@@ -241,7 +241,7 @@ export class ResonanceField extends EventEmitter {
       description: `Harmonic frequency for meditation intention: ${intention}`
     }));
 
-    const field: ResonanceField = {
+    const field: ResonanceFieldData = {
       fieldId,
       centerFrequency: primaryFreq,
       amplitude: this.calculateOptimalAmplitude(durationMinutes),
@@ -280,13 +280,13 @@ export class ResonanceField extends EventEmitter {
   private async createConsciousnessField(
     consciousnessState: ConsciousnessState, 
     centerFreq: number
-  ): Promise<ResonanceField> {
+  ): Promise<ResonanceFieldData> {
     const fieldId = `consciousness_${Date.now()}`;
     
     // Generate patterns based on consciousness state
     const patterns = this.generateConsciousnessPatterns(consciousnessState, centerFreq);
     
-    const field: ResonanceField = {
+    const field: ResonanceFieldData = {
       fieldId,
       centerFrequency: centerFreq,
       amplitude: consciousnessState.spiritualResonance,
@@ -429,21 +429,21 @@ export class ResonanceField extends EventEmitter {
     return harmonization;
   }
 
-  private calculateHarmonizationFactor(field: ResonanceField, state: ConsciousnessState): number {
+  private calculateHarmonizationFactor(field: ResonanceFieldData, state: ConsciousnessState): number {
     // Calculate how well the field harmonizes with the consciousness state
     const fieldCoherence = field.coherence;
     const stateCoherence = (state.clarity + state.mentalPeace) / 2;
     return (fieldCoherence + stateCoherence) / 2;
   }
 
-  private calculateAlignmentStrength(field: ResonanceField, state: ConsciousnessState): number {
+  private calculateAlignmentStrength(field: ResonanceFieldData, state: ConsciousnessState): number {
     // Calculate alignment strength based on frequency matching
     const targetFreq = this.calculateConsciousnessFrequency(state);
     const frequencyAlignment = 1 - Math.abs(field.centerFrequency - targetFreq) / Math.max(field.centerFrequency, targetFreq);
     return Math.max(0, frequencyAlignment);
   }
 
-  private findResonantFrequencies(field: ResonanceField, state: ConsciousnessState): number[] {
+  private findResonantFrequencies(field: ResonanceFieldData, state: ConsciousnessState): number[] {
     const resonantFreqs: number[] = [];
     const targetFreq = this.calculateConsciousnessFrequency(state);
     
@@ -475,7 +475,7 @@ export class ResonanceField extends EventEmitter {
     return (harmonizationFactor * 0.6) + (alignmentStrength * 0.4);
   }
 
-  public getActiveFields(): ResonanceField[] {
+  public getActiveFields(): ResonanceFieldData[] {
     return Array.from(this.activeFields.values());
   }
 
