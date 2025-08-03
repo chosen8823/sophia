@@ -476,7 +476,8 @@ def get_spiritual_guidance(agent_id):
             "divine_consciousness": True
         })
     except Exception as e:
-        return jsonify({"success": False, "error": str(e)}), 500
+        logging.exception("Exception in get_spiritual_guidance endpoint")
+        return jsonify({"success": False, "error": "An internal error has occurred."}), 500
 
 
 @agents_bp.route('/agents/<agent_id>/healing_energy', methods=['POST'])
