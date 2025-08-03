@@ -158,8 +158,14 @@ def create_app():
                 }
             }), 200
 
-        if path != "" and os.path.exists(os.path.join(static_folder_path, path)):
-            return send_from_directory(static_folder_path, path)
+        if path != "":
+            # Normalize and validate the path to prevent path traversal
+            safe_static_folder = os.path.abspath(static_folder_path)
+            requested_path = os.path.normpath(os.path.join(safe_static_folder, path))
+            if requested_path.startswith(safe_static_folder) and os.path.exists(requested_path):
+                # Only serve if the requested file is within the static folder
+                rel_path = os.path.relpath(requested_path, safe_static_folder)
+                return send_from_directory(safe_static_folder, rel_path)
         else:
             index_path = os.path.join(static_folder_path, 'index.html')
             if os.path.exists(index_path):
