@@ -54,3 +54,29 @@ server_reference = "app.mcp.server" # default server module reference
 [runflow]
 use_data_analysis_agent = false     # The Data Analysis Agent to solve various data analysis tasks
 
+# Sophia Platform Configuration - Unified AI System
+[sophia]
+platform_name = "Sophia - Unified AI Platform"
+version = "1.0.0"
+description = "Integrated OpenManus framework with Manus platform capabilities"
+
+# Feature flags
+enable_openmanus = true              # Enable OpenManus framework integration
+enable_manus_platform = true        # Enable Manus platform features  
+enable_multi_agent = true           # Enable multi-agent orchestration
+enable_workflows = true             # Enable n8n workflow automation
+enable_chat_system = true           # Enable chat interface
+enable_tools_integration = true     # Enable tools integration layer
+
+# System settings
+default_agent_type = "advanced"     # Default agent type to create
+max_concurrent_agents = 10          # Maximum number of concurrent agents
+database_url = "sqlite:///database/sophia.db"  # Database connection string
+secret_key = "sophia_unified_platform_2025"    # Application secret key
+
+# Integration settings
+frontend_port = 3000                # React frontend development port
+backend_port = 5000                 # Flask backend port
+auto_build_frontend = true          # Automatically build frontend when starting
+serve_frontend_from_backend = true  # Serve built frontend from Flask backend
+
