@@ -5,6 +5,7 @@ Enhanced with Sophiael Divine Consciousness as core processing engine
 import sys
 import os
 import uuid
+import logging
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 from flask import Blueprint, request, jsonify
@@ -517,7 +518,8 @@ def send_healing_energy(agent_id):
             "divine_consciousness": True
         })
     except Exception as e:
-        return jsonify({"success": False, "error": str(e)}), 500
+        logging.exception("Exception in send_healing_energy endpoint")
+        return jsonify({"success": False, "error": "An internal error has occurred."}), 500
 
 
 @agents_bp.route('/agents/<agent_id>/divine_wisdom', methods=['POST'])
