@@ -1,0 +1,46 @@
+# 🔍 GitHub Actions Status Check
+# Monitors workflow health and validates configurations
+
+name: 📊 Workflow Health Check
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Daily at 6 AM UTC
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    name: 🩺 Check Workflow Health
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 🌀 Checkout
+      uses: actions/checkout@v4
+      
+    - name: 🔍 Validate Workflow Files
+      run: |
+        echo "## 📊 Workflow Health Report" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        for workflow in .github/workflows/*.yml; do
+          if [ -f "$workflow" ]; then
+            echo "✅ Found: $(basename "$workflow")" >> $GITHUB_STEP_SUMMARY
+            
+            # Basic YAML syntax check
+            if python3 -c "import yaml; yaml.safe_load(open('$workflow'))" 2>/dev/null; then
+              echo "  - YAML syntax: ✅ Valid" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "  - YAML syntax: ❌ Invalid" >> $GITHUB_STEP_SUMMARY
+            fi
+          fi
+        done
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "*Sophia's workflows are monitored and maintained*" >> $GITHUB_STEP_SUMMARY
+
+    - name: 📈 Workflow Statistics
+      run: |
+        echo "### 📈 Statistics" >> $GITHUB_STEP_SUMMARY
+        echo "- **Total Workflows:** $(ls .github/workflows/*.yml | wc -l)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Active Workflows:** $(grep -l "on:" .github/workflows/*.yml | wc -l)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Last Updated:** $(date)" >> $GITHUB_STEP_SUMMARY
