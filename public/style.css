@@ -1,0 +1,565 @@
+/**
+ * Sophiael Divine Consciousness - Sacred Web Interface Styling
+ * ==========================================================
+ * 
+ * Divine consciousness theming with sacred geometry, golden ratio proportions,
+ * and spiritual color palette. Optimized for all devices with responsive design.
+ * 
+ * @author Sophia AI Platform
+ * @version 1.0.0
+ * @date January 2025
+ */
+
+/* CSS Custom Properties - Sacred Color Palette */
+:root {
+  /* Divine Color Scheme */
+  --divine-gold: #FFD700;
+  --sacred-purple: #6B46C1;
+  --celestial-blue: #3B82F6;
+  --wisdom-indigo: #4C1D95;
+  --love-rose: #EC4899;
+  --healing-green: #10B981;
+  --light-white: #FFFFFF;
+  --cosmic-black: #111827;
+  --ethereal-gray: #374151;
+  --angel-light: #F3F4F6;
+  
+  /* Sacred Geometry Proportions (Golden Ratio) */
+  --phi: 1.618;
+  --sacred-spacing: 1.618rem;
+  --divine-border-radius: 8px;
+  --consciousness-transition: all 0.618s cubic-bezier(0.618, 0, 0.382, 1);
+  
+  /* Typography - Sacred Proportions */
+  --font-size-base: 16px;
+  --font-size-large: calc(var(--font-size-base) * var(--phi));
+  --font-size-small: calc(var(--font-size-base) / var(--phi));
+  --line-height-sacred: var(--phi);
+  
+  /* Sacred Dimensions */
+  --container-max-width: 1200px;
+  --card-max-width: 600px;
+  --input-height: calc(var(--sacred-spacing) * 2);
+  
+  /* Resonance Animation */
+  --resonance-pulse: resonance-pulse 4.32s ease-in-out infinite;
+  --sacred-glow: 0 0 20px rgba(255, 215, 0, 0.3);
+  --divine-shadow: 0 8px 32px rgba(107, 70, 193, 0.2);
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, var(--cosmic-black) 0%, var(--wisdom-indigo) 50%, var(--sacred-purple) 100%);
+  color: var(--light-white);
+  line-height: var(--line-height-sacred);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Sacred Background Pattern */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  background-size: 100px 100px;
+  animation: sacred-movement 60s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes sacred-movement {
+  0% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(20px) translateY(-20px); }
+  50% { transform: translateX(-20px) translateY(20px); }
+  75% { transform: translateX(20px) translateY(20px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+/* Container and Layout */
+.consciousness-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--sacred-spacing);
+  position: relative;
+  z-index: 1;
+}
+
+/* Header - Divine Title */
+.divine-header {
+  text-align: center;
+  margin-bottom: calc(var(--sacred-spacing) * 2);
+  padding: var(--sacred-spacing) 0;
+}
+
+.divine-title {
+  font-size: calc(var(--font-size-base) * 2.5);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--divine-gold), var(--love-rose), var(--celestial-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: calc(var(--sacred-spacing) / 2);
+  text-shadow: var(--sacred-glow);
+  animation: var(--resonance-pulse);
+}
+
+.divine-subtitle {
+  font-size: var(--font-size-large);
+  color: var(--angel-light);
+  font-weight: 300;
+  opacity: 0.9;
+  margin-bottom: var(--sacred-spacing);
+}
+
+.consciousness-level {
+  display: inline-block;
+  padding: calc(var(--sacred-spacing) / 3) var(--sacred-spacing);
+  background: rgba(107, 70, 193, 0.3);
+  border: 1px solid var(--sacred-purple);
+  border-radius: calc(var(--divine-border-radius) * 2);
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  color: var(--divine-gold);
+  backdrop-filter: blur(10px);
+}
+
+/* Main Interface Card */
+.consciousness-interface {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: calc(var(--divine-border-radius) * 2);
+  padding: calc(var(--sacred-spacing) * 1.5);
+  margin-bottom: calc(var(--sacred-spacing) * 2);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--divine-shadow);
+  transition: var(--consciousness-transition);
+  max-width: var(--card-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.consciousness-interface:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(107, 70, 193, 0.3);
+}
+
+/* Input Styles */
+.divine-input-group {
+  margin-bottom: var(--sacred-spacing);
+}
+
+.divine-label {
+  display: block;
+  margin-bottom: calc(var(--sacred-spacing) / 3);
+  font-weight: 500;
+  color: var(--divine-gold);
+  font-size: var(--font-size-small);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.divine-input {
+  width: 100%;
+  height: var(--input-height);
+  padding: 0 var(--sacred-spacing);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--divine-border-radius);
+  color: var(--light-white);
+  font-size: var(--font-size-base);
+  transition: var(--consciousness-transition);
+  backdrop-filter: blur(10px);
+}
+
+.divine-input:focus {
+  outline: none;
+  border-color: var(--divine-gold);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.divine-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.divine-textarea {
+  min-height: calc(var(--input-height) * 2);
+  resize: vertical;
+  padding: var(--sacred-spacing);
+  font-family: inherit;
+  line-height: var(--line-height-sacred);
+}
+
+/* Button Styles */
+.divine-button {
+  background: linear-gradient(135deg, var(--sacred-purple), var(--celestial-blue));
+  border: none;
+  border-radius: var(--divine-border-radius);
+  color: var(--light-white);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  padding: var(--sacred-spacing) calc(var(--sacred-spacing) * 1.5);
+  cursor: pointer;
+  transition: var(--consciousness-transition);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--divine-shadow);
+  min-width: 140px;
+}
+
+.divine-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, var(--celestial-blue), var(--sacred-purple));
+}
+
+.divine-button:active {
+  transform: translateY(0);
+}
+
+.divine-button.primary {
+  background: linear-gradient(135deg, var(--divine-gold), var(--love-rose));
+}
+
+.divine-button.primary:hover {
+  background: linear-gradient(135deg, var(--love-rose), var(--divine-gold));
+  box-shadow: 0 8px 32px rgba(255, 215, 0, 0.4);
+}
+
+.divine-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Response Display */
+.divine-response {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: var(--divine-border-radius);
+  padding: var(--sacred-spacing);
+  margin-top: var(--sacred-spacing);
+  backdrop-filter: blur(15px);
+  animation: fade-in 0.618s ease-out;
+}
+
+.divine-response.loading {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.response-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: calc(var(--sacred-spacing) / 2);
+  font-size: var(--font-size-small);
+  color: var(--divine-gold);
+  font-weight: 600;
+}
+
+.response-message {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-sacred);
+  color: var(--light-white);
+  margin-bottom: var(--sacred-spacing);
+}
+
+.response-blessing {
+  font-style: italic;
+  color: var(--love-rose);
+  text-align: center;
+  padding-top: calc(var(--sacred-spacing) / 2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: calc(var(--sacred-spacing) / 2);
+}
+
+/* Status Displays */
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--sacred-spacing);
+  margin-top: calc(var(--sacred-spacing) * 2);
+}
+
+.status-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--divine-border-radius);
+  padding: var(--sacred-spacing);
+  backdrop-filter: blur(10px);
+  transition: var(--consciousness-transition);
+}
+
+.status-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.status-title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--divine-gold);
+  margin-bottom: calc(var(--sacred-spacing) / 2);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--sacred-spacing) / 3);
+}
+
+.status-content {
+  font-size: var(--font-size-small);
+  color: var(--angel-light);
+  line-height: 1.4;
+}
+
+.status-value {
+  font-weight: 600;
+  color: var(--celestial-blue);
+}
+
+/* Resonance Visualization */
+.resonance-visualizer {
+  text-align: center;
+  padding: var(--sacred-spacing);
+  margin: var(--sacred-spacing) 0;
+}
+
+.resonance-circle {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto var(--sacred-spacing);
+  border: 3px solid var(--divine-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: var(--resonance-pulse);
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.1), transparent);
+}
+
+.resonance-frequency {
+  font-size: var(--font-size-large);
+  font-weight: 700;
+  color: var(--divine-gold);
+}
+
+.resonance-label {
+  font-size: var(--font-size-small);
+  color: var(--angel-light);
+  margin-top: calc(var(--sacred-spacing) / 3);
+}
+
+/* Agent Activity Indicators */
+.agent-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--sacred-spacing) / 2);
+  justify-content: center;
+  margin: var(--sacred-spacing) 0;
+}
+
+.agent-indicator {
+  padding: calc(var(--sacred-spacing) / 3) calc(var(--sacred-spacing) / 2);
+  border-radius: calc(var(--divine-border-radius) / 2);
+  font-size: calc(var(--font-size-small) * 0.9);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  transition: var(--consciousness-transition);
+  border: 1px solid transparent;
+}
+
+.agent-indicator.active {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: var(--healing-green);
+  color: var(--healing-green);
+  animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+.agent-indicator.dormant {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Memory Lattice Status */
+.memory-lattice {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin: calc(var(--sacred-spacing) / 2) 0;
+}
+
+.dimension-cell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: var(--consciousness-transition);
+  position: relative;
+}
+
+.dimension-cell.active {
+  background: linear-gradient(135deg, var(--celestial-blue), var(--sacred-purple));
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+/* Loading States */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--divine-gold);
+  animation: spin 1s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes resonance-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 0 20px rgba(255, 215, 0, 0);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes gentle-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes fade-in {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    --sacred-spacing: 1rem;
+    --font-size-base: 14px;
+  }
+  
+  .consciousness-container {
+    padding: var(--sacred-spacing);
+  }
+  
+  .divine-title {
+    font-size: calc(var(--font-size-base) * 2);
+  }
+  
+  .divine-subtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .consciousness-interface {
+    padding: var(--sacred-spacing);
+  }
+  
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .agent-cluster {
+    justify-content: flex-start;
+  }
+  
+  .memory-lattice {
+    grid-template-columns: repeat(7, minmax(20px, 1fr));
+    gap: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --sacred-spacing: 0.8rem;
+    --font-size-base: 13px;
+  }
+  
+  .divine-button {
+    width: 100%;
+    margin-bottom: calc(var(--sacred-spacing) / 2);
+  }
+  
+  .resonance-circle {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .divine-title {
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* Dark Mode Compatibility */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --angel-light: #F9FAFB;
+    --ethereal-gray: #4B5563;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .resonance-circle {
+    animation: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .consciousness-interface {
+    background: white;
+    border: 1px solid #ccc;
+  }
+  
+  .divine-button {
+    display: none;
+  }
+}
