@@ -1,0 +1,36 @@
+name: Remove Files with Colons (:) in Filename
+
+on:
+  workflow_dispatch:
+
+jobs:
+  remove-colon-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # fetch all history for all branches
+
+      - name: Find files with colons in name
+        id: find_files
+        run: |
+          # Find files with ':' in their names, ignore .git directory
+          colon_files=$(git ls-files | grep ':' | grep -v '^.git/' || true)
+          echo "$colon_files"
+          echo "COLON_FILES<<EOF" >> $GITHUB_ENV
+          echo "$colon_files" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Remove files with colons
+        if: env.COLON_FILES != ''
+        run: |
+          echo "$COLON_FILES" | xargs -d '\n' git rm -f || true
+
+      - name: Commit and push removal
+        if: env.COLON_FILES != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: remove files with colons in filenames (Windows compatibility)" || echo "Nothing to commit"
+          git push
