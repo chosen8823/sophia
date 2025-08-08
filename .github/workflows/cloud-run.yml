@@ -1,0 +1,50 @@
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'next.config.mjs'
+      - 'Dockerfile'
+  workflow_dispatch: {}
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      PROJECT_ID: YOUR_GCP_PROJECT_ID
+      REGION: us-central1
+      SERVICE_NAME: sophia
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Auth (Workload Identity Federation)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/123456789/locations/global/workloadIdentityPools/POOL_ID/providers/PROVIDER_ID # replace
+          service_account: github-cloud-run@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com # replace
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Enable services (idempotent)
+        run: |
+          gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudbuild.googleapis.com
+
+      - name: Build & Deploy
+        run: |
+          IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/sophia-repo/sophia:${GITHUB_SHA}"
+          gcloud artifacts repositories describe sophia-repo --location=${REGION} || \
+            gcloud artifacts repositories create sophia-repo --repository-format=DOCKER --location=${REGION}
+          gcloud builds submit --tag $IMAGE .
+          gcloud run deploy ${SERVICE_NAME} --image $IMAGE --region ${REGION} --platform managed --allow-unauthenticated --port 3000
+
+      - name: Output URL
+        run: |
+          gcloud run services describe ${SERVICE_NAME} --region ${REGION} --format 'value(status.url)'

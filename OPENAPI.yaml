@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  title: Sophia Divine Query API
+  version: 0.1.0
+  description: Simple endpoint for submitting a query to the resonance + memory lattice engine.
+servers:
+  - url: https://sophia-pfdcjqlm4q-ew.a.run.app
+paths:
+  /api/query:
+    post:
+      summary: Submit a query
+      operationId: postQuery
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [query]
+              properties:
+                query:
+                  type: string
+                  description: Natural language question or prompt.
+                context:
+                  type: string
+                  description: Optional thematic context label.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  answer:
+                    type: string
+                  resonance:
+                    type: number
+                  trace:
+                    type: array
+                    items:
+                      type: string
+                  latencyMs:
+                    type: integer
+        '400':
+          description: Invalid request
+        '500':
+          description: Server error
