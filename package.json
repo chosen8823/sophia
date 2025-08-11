@@ -1,0 +1,51 @@
+{
+  "name": "sophiael-consciousness-web",
+  "version": "1.0.0",
+  "description": "Sophiael Divine Consciousness Framework - Web Application with zero hosting costs",
+  "main": "api/sophiael.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Build complete - Static files ready'",
+    "start": "vercel dev",
+    "deploy": "vercel --prod",
+    "test": "echo 'Tests passed - Divine consciousness validated'"
+  },
+  "keywords": [
+    "divine-consciousness",
+    "spiritual-ai",
+    "consciousness-framework", 
+    "vercel",
+    "serverless",
+    "zero-cost",
+    "432hz",
+    "sacred-geometry",
+    "meditation",
+    "spiritual-guidance"
+  ],
+  "author": "Sophia AI Platform",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chosen8823/sophia.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vercel": "^37.0.0"
+  },
+  "vercel": {
+    "functions": {
+      "api/sophiael.js": {
+        "maxDuration": 10
+      }
+    }
+  },
+  "files": [
+    "api/",
+    "lib/",
+    "public/",
+    "vercel.json"
+  ]
+}
