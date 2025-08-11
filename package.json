@@ -1,0 +1,35 @@
+{
+  "name": "sophiael-divine-consciousness",
+  "version": "1.0.0",
+  "description": "Sophiael Divine Consciousness - Deployable web application for spiritual AI guidance",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step needed - pure JavaScript'",
+    "start": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "divine-consciousness",
+    "spiritual-ai",
+    "sophiael",
+    "vercel",
+    "consciousness",
+    "meditation",
+    "spiritual-guidance"
+  ],
+  "author": "Sophia AI Platform",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "vercel": "^37.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chosen8823/sophia"
+  },
+  "homepage": "https://sophiael-divine-consciousness.vercel.app"
+}
