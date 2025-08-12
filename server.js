@@ -258,7 +258,6 @@ class DivineWorkflowOrchestrator {
       return execution;
     } catch (error) {
       const executionId = `exec_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      const execution = this.activeExecutions.get(executionId);
       if (execution) {
         execution.status = 'failed';
         execution.error = error.message;
