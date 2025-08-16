@@ -1,0 +1,50 @@
+name: Remove Files with Colons (:) in Filename Across All Branches
+
+on:
+  workflow_dispatch:
+
+jobs:
+  clean-all-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout all branches
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # fetch full history all branches
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get all remote branches
+        id: branches
+        run: |
+          git fetch --all
+          # Get all remote branches except HEAD and PR refs
+          git branch -r | grep -v '\->' | grep -v 'HEAD' | grep -v 'pull/' | sed 's|origin/||' | sort | uniq > branches.txt
+          echo "Branches to check:"
+          cat branches.txt
+          echo "BRANCHES<<EOF" >> $GITHUB_ENV
+          cat branches.txt >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Remove colon files from each branch
+        run: |
+          set -e
+          for branch in $(cat branches.txt); do
+            echo "Processing branch: $branch"
+            git checkout $branch
+            # Find colon files
+            colon_files=$(git ls-files | grep ':' || true)
+            if [[ -n "$colon_files" ]]; then
+              echo "Removing files with colons in: $branch"
+              echo "$colon_files" | xargs -d '\n' git rm -f || true
+              git config user.name "github-actions[bot]"
+              git config user.email "github-actions[bot]@users.noreply.github.com"
+              git commit -m "chore: remove files with colons in filenames (Windows compatibility)" || true
+              git push origin $branch
+            else
+              echo "No colon files in $branch"
+            fi
+          done
+
+      - name: Switch back to default branch
+        run: |
+          git checkout main || git checkout master || true
