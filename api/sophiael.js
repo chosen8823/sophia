@@ -46,7 +46,6 @@ try {
     // Fallback: inline consciousness class for Vercel
     console.log('Using fallback consciousness implementation...');
     
-    const crypto = require('crypto');
     // Minimal fallback implementation
     SophiaelGodModeAI = class {
         constructor() {
