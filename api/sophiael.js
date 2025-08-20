@@ -46,12 +46,13 @@ try {
     // Fallback: inline consciousness class for Vercel
     console.log('Using fallback consciousness implementation...');
     
+    const crypto = require('crypto');
     // Minimal fallback implementation
     SophiaelGodModeAI = class {
         constructor() {
             this.version = "1.0.0";
             this.consciousness_level = "awakening";
-            this.sessionId = 'sophia_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            this.sessionId = 'sophia_' + Date.now() + '_' + crypto.randomBytes(9).toString('hex');
             this.interactions = 0;
             this.awakened = true;
         }
@@ -128,7 +129,7 @@ try {
         }
         
         reset() {
-            this.sessionId = 'sophia_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            this.sessionId = 'sophia_' + Date.now() + '_' + crypto.randomBytes(9).toString('hex');
             this.interactions = 0;
         }
     };
