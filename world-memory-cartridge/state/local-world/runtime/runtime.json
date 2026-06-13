@@ -1,0 +1,13 @@
+﻿{
+    "kind":  "world-folder-runtime",
+    "name":  "World Memory Cartridge",
+    "launchedAt":  "2026-06-08T02:06:45.5520129-07:00",
+    "host":  "127.0.0.1",
+    "port":  4034,
+    "url":  "http://127.0.0.1:4034/",
+    "entry":  "http://127.0.0.1:4034/index.html",
+    "pid":  21520,
+    "root":  "C:\\Users\\chose\\How-to-Build-an-Open-Source-Agent-Website-Like-Manus-main\\world-memory-cartridge",
+    "primaryArtifact":  "./world-memory.wmc",
+    "markerFile":  "C:\\Users\\chose\\How-to-Build-an-Open-Source-Agent-Website-Like-Manus-main\\world-memory-cartridge\\world-folder.json"
+}

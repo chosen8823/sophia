@@ -1,0 +1,97 @@
+{
+  "kind": "discovered-memory-paths",
+  "version": "0.1.0",
+  "generatedFrom": "local memory trail and filesystem inspection",
+  "discoveries": [
+    {
+      "id": "codex-memory-registry",
+      "kind": "memory-registry",
+      "path": "C:\\Users\\chose\\.codex\\memories\\MEMORY.md",
+      "role": "Primary local memory registry for prior Codex work",
+      "trust": "local"
+    },
+    {
+      "id": "codex-chat-history",
+      "kind": "chat-index",
+      "path": "C:\\Users\\chose\\.codex\\history.jsonl",
+      "role": "Local Codex chat history used to trace earlier mentions of Pieces OS and copilot-cli",
+      "trust": "local"
+    },
+    {
+      "id": "codex-mcp-config",
+      "kind": "runtime-config",
+      "path": "C:\\Users\\chose\\.codex\\config.toml",
+      "role": "Active Codex runtime and MCP endpoint configuration",
+      "trust": "local",
+      "endpoints": [
+        {
+          "id": "lux-mcp",
+          "url": "http://localhost:8788"
+        },
+        {
+          "id": "pieces-os",
+          "url": "http://localhost:8789"
+        }
+      ]
+    },
+    {
+      "id": "copilot-cli-root",
+      "kind": "local-tool-root",
+      "path": "C:\\Users\\chose\\Documents\\polyphilidefy\\tools\\copilot-cli",
+      "role": "Local copilot CLI scaffold and command surface",
+      "trust": "local"
+    },
+    {
+      "id": "copilot-cli-memory-db",
+      "kind": "sqlite-memory-store",
+      "path": "C:\\Users\\chose\\Documents\\polyphilidefy\\tools\\copilot-cli\\memory.db",
+      "role": "Copilot CLI testimony and memory store",
+      "trust": "local",
+      "sizeBytes": 24576
+    },
+    {
+      "id": "pieces-cli-root",
+      "kind": "local-tool-root",
+      "path": "C:\\Users\\chose\\AppData\\Local\\pieces\\pieces-cli",
+      "role": "Pieces CLI local state and log root",
+      "trust": "local"
+    },
+    {
+      "id": "pieces-cli-user-state",
+      "kind": "user-state",
+      "path": "C:\\Users\\chose\\AppData\\Local\\pieces\\pieces-cli\\user.json",
+      "role": "Pieces CLI onboarding state",
+      "trust": "local",
+      "state": {
+        "is_onboarded": false,
+        "onboarding_step": 8,
+        "skip_onboarding": true
+      }
+    },
+    {
+      "id": "pieces-os-package-root",
+      "kind": "app-container-root",
+      "path": "C:\\Users\\chose\\AppData\\Local\\Packages\\MeshIntelligentTechnologi.PiecesOS_xpmeezj2q5frg",
+      "role": "Installed Pieces OS app container",
+      "trust": "mixed",
+      "notes": [
+        "Contains live lockfiles and active WebView state",
+        "Treat as inspectable runtime state, not a clean export surface"
+      ]
+    },
+    {
+      "id": "pieces-desktop-package-root",
+      "kind": "app-container-root",
+      "path": "C:\\Users\\chose\\AppData\\Local\\Packages\\MeshIntelligentTechnologi.PiecesDesktop_xpmeezj2q5frg",
+      "role": "Installed Pieces Desktop app container",
+      "trust": "mixed"
+    },
+    {
+      "id": "awesome-stars-index",
+      "kind": "local-index",
+      "path": "C:\\Users\\chose\\Downloads\\database4\\OneDrive_Migrated-20251226-135104\\LLM-Agent-Hub\\workspace\\index\\awesome_stars.json",
+      "role": "Curated OSS stars index already used by the world folder",
+      "trust": "local"
+    }
+  ]
+}

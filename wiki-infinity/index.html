@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wiki Infinity</title>
+  <style>
+    :root {
+      --bg: #071019;
+      --sea: #0f2537;
+      --panel: rgba(8, 18, 28, 0.82);
+      --line: rgba(143, 201, 218, 0.14);
+      --text: #eef8fb;
+      --muted: #98b5c1;
+      --gold: #efc76f;
+      --foam: #80ffdb;
+      --signal: #8ecae6;
+      --shadow: rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Palatino Linotype", Georgia, serif;
+      background:
+        radial-gradient(circle at top right, rgba(128, 255, 219, 0.08), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(239, 199, 111, 0.08), transparent 24%),
+        linear-gradient(160deg, #050b12 0%, var(--bg) 40%, var(--sea) 100%);
+    }
+
+    main {
+      width: min(1280px, calc(100vw - 2rem));
+      margin: 0 auto;
+      padding: 1.4rem 0 2rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.42rem 0.86rem;
+      border-radius: 999px;
+      background: rgba(10, 28, 43, 0.7);
+      border: 1px solid rgba(239, 199, 111, 0.18);
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+    }
+
+    h1 {
+      margin: 1rem 0 0.45rem;
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      line-height: 0.96;
+      letter-spacing: 0.01em;
+    }
+
+    .intro {
+      max-width: 60rem;
+      margin: 0 0 1.4rem;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 1.04rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 1.3rem;
+      box-shadow: 0 20px 50px var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .sidebar,
+    .preview {
+      padding: 1rem;
+    }
+
+    h2 {
+      margin: 0 0 0.75rem;
+      color: var(--gold);
+      font-size: 0.98rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .toolbar {
+      display: grid;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    input,
+    button {
+      font: inherit;
+    }
+
+    input[type="search"],
+    input[type="range"] {
+      width: 100%;
+    }
+
+    input[type="search"] {
+      padding: 0.82rem 0.95rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(142, 202, 230, 0.18);
+      background: rgba(3, 11, 17, 0.64);
+      color: var(--text);
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 0.82rem 1rem;
+      cursor: pointer;
+      color: #08131c;
+      background: linear-gradient(120deg, var(--gold), var(--foam));
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat {
+      padding: 0.85rem;
+      border-radius: 1rem;
+      background: rgba(3, 12, 18, 0.5);
+      border: 1px solid rgba(142, 202, 230, 0.08);
+    }
+
+    .stat .label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat .value {
+      display: block;
+      margin-top: 0.28rem;
+      font-size: 1.18rem;
+    }
+
+    .tree {
+      max-height: calc(100vh - 24rem);
+      overflow: auto;
+      padding-right: 0.2rem;
+    }
+
+    details {
+      margin: 0.15rem 0;
+      padding-left: 0.3rem;
+    }
+
+    summary,
+    .file-node {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.34rem 0.48rem;
+      border-radius: 0.7rem;
+      color: #dcecf2;
+    }
+
+    summary:hover,
+    .file-node:hover,
+    .active-node {
+      background: rgba(128, 255, 219, 0.08);
+    }
+
+    .summary-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      padding: 0.08rem 0.4rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      background: rgba(239, 199, 111, 0.14);
+      color: var(--gold);
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    pre {
+      margin: 0;
+      padding: 1rem;
+      min-height: 26rem;
+      border-radius: 1rem;
+      background: rgba(2, 9, 14, 0.86);
+      color: #dff4ff;
+      border: 1px solid rgba(142, 202, 230, 0.08);
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.84rem;
+      line-height: 1.58;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .tree {
+        max-height: 26rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="chip">Zero-copy SSD-backed wiki</div>
+    <h1>Wiki Infinity</h1>
+    <p class="intro">
+      The storage is the terrain. This page is the living index over that terrain. It does not
+      duplicate the repo into a second corpus. It maps structure, memory, and text previews in
+      place, so the SSD itself becomes the body of the wiki.
+    </p>
+
+    <div class="layout">
+      <section class="panel sidebar">
+        <h2>Map</h2>
+        <div class="toolbar">
+          <div>
+            <label for="root-select">Root</label>
+            <select id="root-select" style="width:100%; padding:0.82rem 0.95rem; border-radius:1rem; border:1px solid rgba(142, 202, 230, 0.18); background:rgba(3, 11, 17, 0.64); color:var(--text);">
+              <option value="repo">Repo root</option>
+              <option value="tessellated-reality">C:\TessellatedReality</option>
+            </select>
+          </div>
+          <input id="search" type="search" placeholder="Filter names in the visible tree..." />
+          <div>
+            <label for="depth">Depth <span id="depth-value">4</span></label>
+            <input id="depth" type="range" min="2" max="6" step="1" value="4" />
+          </div>
+          <button id="refresh">Refresh map</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <span class="label">Directories</span>
+            <span class="value" id="directory-count">--</span>
+          </div>
+          <div class="stat">
+            <span class="label">Files</span>
+            <span class="value" id="file-count">--</span>
+          </div>
+          <div class="stat">
+            <span class="label">Truncated</span>
+            <span class="value" id="truncated-count">--</span>
+          </div>
+          <div class="stat">
+            <span class="label">Generated</span>
+            <span class="value" id="generated-at">--</span>
+          </div>
+        </div>
+
+        <div class="tree" id="tree"></div>
+      </section>
+
+      <section class="panel preview">
+        <h2>Preview</h2>
+        <div class="meta" id="preview-meta">Select a node to open its metadata or text preview.</div>
+        <pre id="preview-body">Awaiting selection...</pre>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const treeRoot = document.getElementById("tree");
+    const previewMeta = document.getElementById("preview-meta");
+    const previewBody = document.getElementById("preview-body");
+    const searchInput = document.getElementById("search");
+    const depthInput = document.getElementById("depth");
+    const depthValue = document.getElementById("depth-value");
+    const refreshButton = document.getElementById("refresh");
+    const rootSelect = document.getElementById("root-select");
+
+    let activePath = null;
+    let currentTree = null;
+
+    function formatDate(value) {
+      return new Date(value).toLocaleString();
+    }
+
+    function createFileButton(node) {
+      const button = document.createElement("div");
+      button.className = "file-node";
+      button.dataset.path = node.path;
+      button.innerHTML = `<span class="summary-line">📄 ${node.name}</span>`;
+      button.addEventListener("click", () => openNode(node.path, button));
+      return button;
+    }
+
+    function renderNode(node, container) {
+      if (node.type === "file") {
+        container.appendChild(createFileButton(node));
+        return;
+      }
+
+      const details = document.createElement("details");
+      if (node.path === ".") {
+        details.open = true;
+      }
+
+      const summary = document.createElement("summary");
+      summary.innerHTML = `
+        <span class="summary-line">
+          📁 ${node.name}
+          ${node.truncated ? `<span class="badge">partial</span>` : ""}
+        </span>
+      `;
+      summary.addEventListener("click", (event) => {
+        event.stopPropagation();
+        openNode(node.path, summary);
+      });
+
+      details.appendChild(summary);
+
+      const childrenContainer = document.createElement("div");
+      for (const child of node.children || []) {
+        renderNode(child, childrenContainer);
+      }
+
+      details.appendChild(childrenContainer);
+      container.appendChild(details);
+    }
+
+    function applyFilter() {
+      const filter = searchInput.value.trim().toLowerCase();
+      const nodes = treeRoot.querySelectorAll("[data-path], summary");
+
+      for (const node of nodes) {
+        const visible = !filter || node.textContent.toLowerCase().includes(filter);
+        node.style.display = visible ? "" : "none";
+      }
+    }
+
+    function setActive(target) {
+      document.querySelectorAll(".active-node").forEach((node) => {
+        node.classList.remove("active-node");
+      });
+
+      if (target) {
+        target.classList.add("active-node");
+      }
+    }
+
+    async function openNode(relativePath, target) {
+      activePath = relativePath;
+      setActive(target);
+
+      const response = await fetch(`/api/wiki-infinity/file?root=${encodeURIComponent(rootSelect.value)}&path=${encodeURIComponent(relativePath)}`);
+      const data = await response.json();
+
+      previewMeta.textContent = `${data.rootId} · ${data.path} · ${data.type} · ${data.size} bytes · ${formatDate(data.modifiedAt)}`;
+
+      if (data.type === "directory") {
+        const childLines = (data.children || [])
+          .map((child) => `${child.type === "directory" ? "📁" : "📄"} ${child.name}`)
+          .join("\n");
+        previewBody.textContent = childLines || "Directory is empty.";
+        return;
+      }
+
+      if (!data.textLike) {
+        previewBody.textContent = "Binary or non-text preview omitted. The file stays in place on the SSD.";
+        return;
+      }
+
+      previewBody.textContent = data.preview || "(empty file)";
+      if (data.truncated) {
+        previewBody.textContent += "\n\n… preview truncated …";
+      }
+    }
+
+    async function loadTree() {
+      depthValue.textContent = depthInput.value;
+      const response = await fetch(`/api/wiki-infinity/tree?root=${encodeURIComponent(rootSelect.value)}&depth=${encodeURIComponent(depthInput.value)}`);
+      const data = await response.json();
+      currentTree = data;
+
+      document.getElementById("directory-count").textContent = data.summary.directories;
+      document.getElementById("file-count").textContent = data.summary.files;
+      document.getElementById("truncated-count").textContent = data.summary.truncatedDirectories;
+      document.getElementById("generated-at").textContent = new Date(data.generatedAt).toLocaleTimeString();
+
+      treeRoot.innerHTML = "";
+      renderNode(data.tree, treeRoot);
+      applyFilter();
+    }
+
+    searchInput.addEventListener("input", applyFilter);
+    rootSelect.addEventListener("change", loadTree);
+    depthInput.addEventListener("input", () => {
+      depthValue.textContent = depthInput.value;
+    });
+    refreshButton.addEventListener("click", loadTree);
+
+    loadTree();
+  </script>
+</body>
+</html>

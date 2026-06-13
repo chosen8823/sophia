@@ -1,0 +1,31 @@
+{
+  "kind": "knowledge-sources",
+  "version": "0.1.0",
+  "sources": [
+    {
+      "id": "public-apis-open-data",
+      "label": "Public APIs Open Data",
+      "kind": "remote-catalog",
+      "url": "https://github.com/public-apis/public-apis#open-data",
+      "sourceUrl": "https://raw.githubusercontent.com/public-apis/public-apis/master/README.md",
+      "role": "Remote catalogue of free APIs with an Open Data section",
+      "trust": "external"
+    },
+    {
+      "id": "awesome-stars-index",
+      "label": "Awesome Stars Index",
+      "kind": "local-index",
+      "path": "C:\\Users\\chose\\Downloads\\database4\\OneDrive_Migrated-20251226-135104\\LLM-Agent-Hub\\workspace\\index\\awesome_stars.json",
+      "role": "Local curated OSS substrate and topic index",
+      "trust": "local"
+    },
+    {
+      "id": "discovered-memory-paths",
+      "label": "Discovered Memory Paths",
+      "kind": "local-index",
+      "path": "./sources/discovered-memory-paths.json",
+      "role": "Pinned map of local Codex, copilot-cli, and Pieces memory-bearing paths",
+      "trust": "local"
+    }
+  ]
+}

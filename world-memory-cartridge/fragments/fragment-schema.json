@@ -1,0 +1,15 @@
+{
+  "kind": "fragment-schema",
+  "version": "0.1.0",
+  "description": "Typed particles used to assemble programmable-web surfaces from local and public indices.",
+  "fragmentFields": {
+    "id": "stable fragment identifier",
+    "kind": "root | source | specialist | runtime-config | memory-registry | topic | discovery",
+    "label": "human-readable label",
+    "trust": "local | external | mixed | high",
+    "weight": "heuristic priority between 0 and 1",
+    "summary": "short explanation of why the fragment matters",
+    "location": "path or URL",
+    "tags": "searchable composition hints"
+  }
+}

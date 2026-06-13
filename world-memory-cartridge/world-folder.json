@@ -1,0 +1,42 @@
+{
+  "kind": "world-folder",
+  "name": "World Memory Cartridge",
+  "version": "0.2.0",
+  "primaryArtifact": "./world-memory.wmc",
+  "middleware": "./middleware/agent-middleware.json",
+  "entryHtml": "./index.html",
+  "stateRoot": "./state/local-world",
+  "runtimeRoot": "./state/local-world/runtime",
+  "roots": [
+    ".",
+    "C:\\Users\\chose",
+    "C:\\Users\\chose\\Downloads",
+    "C:\\Users\\chose\\Downloads\\database4"
+  ],
+  "boot": {
+    "preferredPort": 4033,
+    "portSearchLimit": 40,
+    "host": "127.0.0.1",
+    "server": {
+      "type": "python-http",
+      "launcherPreference": [
+        "py -3",
+        "python"
+      ]
+    }
+  },
+  "services": [
+    {
+      "id": "world-surface",
+      "kind": "static-web",
+      "path": ".",
+      "role": "Primary projection surface"
+    },
+    {
+      "id": "file-router",
+      "kind": "middleware",
+      "path": "./middleware/file-router.py",
+      "role": "Claims pending swarm tasks and writes receipts"
+    }
+  ]
+}

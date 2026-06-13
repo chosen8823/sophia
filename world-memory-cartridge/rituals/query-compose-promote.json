@@ -1,0 +1,36 @@
+{
+  "kind": "ritual",
+  "id": "query-compose-promote",
+  "version": "0.1.0",
+  "intent": "Compile the active browser surface from programmable matter fragments.",
+  "steps": [
+    {
+      "id": "query",
+      "label": "Query Matter",
+      "description": "Load roots, sources, discoveries, and specialist definitions into a typed fragment pool."
+    },
+    {
+      "id": "compose",
+      "label": "Compose Candidates",
+      "description": "Generate multiple candidate surfaces with different strategic emphases."
+    },
+    {
+      "id": "evaluate",
+      "label": "Evaluate",
+      "description": "Score candidates on locality, diversity, substrate coverage, swarm coverage, and runtime awareness."
+    },
+    {
+      "id": "promote",
+      "label": "Promote",
+      "description": "Write the winning surface to active runtime files and append a render receipt."
+    }
+  ],
+  "entrypoint": "./compiler/build_surface.py",
+  "writes": [
+    "./state/local-world/runtime/fragment-index.json",
+    "./state/local-world/runtime/candidates.json",
+    "./state/local-world/runtime/active-surface.json",
+    "./state/local-world/runtime/health.json",
+    "./state/local-world/receipts/render.jsonl"
+  ]
+}

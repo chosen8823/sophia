@@ -1,0 +1,132 @@
+{
+  "kind": "agent-middleware",
+  "name": "World Folder Swarm",
+  "version": "0.2.0",
+  "intent": "Route encounters to specialists while keeping roots, queues, and policies inspectable.",
+  "roots": [
+    {
+      "id": "world-folder",
+      "label": "World Folder",
+      "path": ".",
+      "role": "Prototype core",
+      "mode": "read-write"
+    },
+    {
+      "id": "host-home",
+      "label": "Host Home",
+      "path": "C:\\Users\\chose",
+      "role": "Workspace envelope and user profile shell",
+      "mode": "read-mostly",
+      "caution": "Large mixed root with junctions, hidden state, OneDrive, and loose fragment files."
+    },
+    {
+      "id": "downloads-staging",
+      "label": "Downloads Staging",
+      "path": "C:\\Users\\chose\\Downloads",
+      "role": "Ingress zone for imports, exports, archives, and ad hoc assets",
+      "mode": "read-mostly",
+      "caution": "High-churn staging root. Treat as intake, not canonical memory."
+    },
+    {
+      "id": "database4-durable",
+      "label": "Database4 Durable Store",
+      "path": "C:\\Users\\chose\\Downloads\\database4",
+      "role": "Preferred protected local storage root",
+      "mode": "read-mostly",
+      "caution": "Best candidate for canonical durable memory; keep first pass metadata-only."
+    }
+  ],
+  "specialists": [
+    {
+      "id": "filesystem-cartographer",
+      "label": "Filesystem Cartographer",
+      "handles": [
+        "scan roots",
+        "directory mapping",
+        "fractal memory topology"
+      ],
+      "defaultRootIds": [
+        "host-home",
+        "downloads-staging",
+        "database4-durable"
+      ]
+    },
+    {
+      "id": "source-librarian",
+      "label": "Source Librarian",
+      "handles": [
+        "api catalogues",
+        "curated indices",
+        "topic libraries"
+      ],
+      "defaultRootIds": [
+        "database4-durable"
+      ]
+    },
+    {
+      "id": "runtime-keeper",
+      "label": "Runtime Keeper",
+      "handles": [
+        "boot flow",
+        "port selection",
+        "runtime state"
+      ],
+      "defaultRootIds": [
+        "world-folder"
+      ]
+    },
+    {
+      "id": "memory-curator",
+      "label": "Memory Curator",
+      "handles": [
+        "manifest alignment",
+        "artifact sync",
+        "receipt layout"
+      ],
+      "defaultRootIds": [
+        "world-folder"
+      ]
+    },
+    {
+      "id": "projection-bridge",
+      "label": "Projection Bridge",
+      "handles": [
+        "web surface",
+        "local mirror",
+        "cloud shadow"
+      ],
+      "defaultRootIds": [
+        "world-folder",
+        "downloads-staging",
+        "database4-durable"
+      ]
+    }
+  ],
+  "queues": {
+    "inbox": "./state/local-world/inbox",
+    "outbox": "./state/local-world/outbox",
+    "receipts": "./state/local-world/receipts"
+  },
+  "dispatch": [
+    {
+      "encounter": "unknown folder or archive",
+      "specialistId": "filesystem-cartographer"
+    },
+    {
+      "encounter": "dataset, API catalogue, or stars index",
+      "specialistId": "source-librarian"
+    },
+    {
+      "encounter": "port collision or startup drift",
+      "specialistId": "runtime-keeper"
+    },
+    {
+      "encounter": "artifact mismatch or mirror confusion",
+      "specialistId": "memory-curator"
+    },
+    {
+      "encounter": "surface or projection wiring",
+      "specialistId": "projection-bridge"
+    }
+  ]
+}

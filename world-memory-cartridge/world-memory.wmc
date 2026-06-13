@@ -1,0 +1,318 @@
+{
+  "format": {
+    "name": "World Memory Cartridge",
+    "extension": ".wmc",
+    "encoding": "utf-8",
+    "payload": "json"
+  },
+  "name": "World Memory Cartridge",
+  "version": "0.2.0",
+  "generatedFrom": "local-first prototype",
+  "description": "A mirrored cartridge that models unlimited memory as a nested world with local, cloud, web, and container projections.",
+  "projectionCore": {
+    "label": "Projection Core",
+    "intent": "Give the agent a central place to project from while keeping every mirror inspectable.",
+    "mode": "nested geometry",
+    "worldRule": "Memory is layered, not singular."
+  },
+  "specs": {
+    "computeFabric": "Elastic multi-agent field",
+    "memoryModel": "World-backed and appendable",
+    "middlewareModel": "File-backed swarm router",
+    "memoryLimit": "Unlimited by model, bounded only by storage policy",
+    "specialistCount": 5,
+    "projectionTargets": [
+      "local",
+      "cloud",
+      "web",
+      "container"
+    ],
+    "defaultPort": 4033
+  },
+  "paths": {
+    "projectRoot": ".",
+    "artifact": "./world-memory.wmc",
+    "manifest": "./memory-manifest.json",
+    "middleware": "./middleware/agent-middleware.json",
+    "knowledgeSources": "./sources/knowledge-sources.json",
+    "discoveredMemoryPaths": "./sources/discovered-memory-paths.json",
+    "swarmRoot": "./state/local-world/swarm",
+    "localRoot": "./state/local-world",
+    "cloudMirrorRoot": "./state/cloud-shadow",
+    "webProjectionRoot": "./state/web-cache",
+    "containerMountRoot": "/cartridge/state"
+  },
+  "rootHints": [
+    {
+      "label": "World Folder",
+      "path": ".",
+      "role": "Prototype core"
+    },
+    {
+      "label": "Host Home",
+      "path": "C:\\Users\\chose",
+      "role": "Workspace envelope and user profile shell"
+    },
+    {
+      "label": "Downloads Staging",
+      "path": "C:\\Users\\chose\\Downloads",
+      "role": "Ingress and archive zone"
+    },
+    {
+      "label": "Database4 Durable Store",
+      "path": "C:\\Users\\chose\\Downloads\\database4",
+      "role": "Preferred protected local storage root"
+    }
+  ],
+  "worldRoots": [
+    {
+      "id": "host-home",
+      "path": "C:\\Users\\chose",
+      "label": "Host Home",
+      "kind": "local-host-root",
+      "role": "Workspace envelope and user profile shell",
+      "trust": "mixed",
+      "scanPolicy": {
+        "mode": "metadata-only",
+        "maxDepth": 1,
+        "followReparsePoints": false,
+        "includeHidden": false
+      },
+      "anchors": [
+        ".codex",
+        "Downloads",
+        "Documents",
+        "code",
+        "repos",
+        "sophia-unified",
+        "OneDrive"
+      ],
+      "cautions": [
+        "Contains Windows junctions and legacy shell links",
+        "Contains hidden and system profile state",
+        "Contains OneDrive sync surface; do not treat as purely local ground truth",
+        "Contains known broken loose fragment files in the root; do not semantic-index by default"
+      ]
+    },
+    {
+      "id": "downloads-staging",
+      "path": "C:\\Users\\chose\\Downloads",
+      "label": "Downloads Staging",
+      "kind": "ingress-root",
+      "role": "Landing zone for imports, exports, archives, briefs, and ad hoc assets",
+      "trust": "mixed",
+      "scanPolicy": {
+        "mode": "metadata-only",
+        "maxDepth": 1,
+        "followReparsePoints": false,
+        "includeHidden": false
+      },
+      "anchors": [
+        "database4",
+        "CLAUDE_CLI_BUILD_BRIEF.md",
+        "conversation zips",
+        "SOPHIA and LLM archives"
+      ],
+      "cautions": [
+        "Archive-heavy and document-heavy; treat most files as opaque until explicitly mounted",
+        "Not a canonical memory root by itself",
+        "May contain transient browser downloads and partial files"
+      ]
+    },
+    {
+      "id": "database4-durable",
+      "path": "C:\\Users\\chose\\Downloads\\database4",
+      "label": "Database4 Durable Store",
+      "kind": "durable-subroot",
+      "role": "Preferred protected local storage root",
+      "trust": "high",
+      "scanPolicy": {
+        "mode": "metadata-only",
+        "maxDepth": 1,
+        "followReparsePoints": false,
+        "includeHidden": false
+      },
+      "anchors": [
+        "Restic",
+        "repos",
+        "OneDrive_Migrated-20251226-135104",
+        "Installers"
+      ],
+      "cautions": [
+        "Treat migrated OneDrive copies as historical shadow, not live canonical repos",
+        "Backups and installers should stay classified separately from active working memory"
+      ]
+    }
+  ],
+  "mirrors": [
+    {
+      "id": "local",
+      "label": "Local World",
+      "kind": "ground truth",
+      "path": "./state/local-world",
+      "status": "primary",
+      "latency": "near-zero",
+      "role": "Canonical editable memory root"
+    },
+    {
+      "id": "cloud",
+      "label": "Cloud Shadow",
+      "kind": "mirror",
+      "path": "./state/cloud-shadow",
+      "status": "ready",
+      "latency": "eventual",
+      "role": "Shared external reflection"
+    },
+    {
+      "id": "web",
+      "label": "Web Cache",
+      "kind": "projection",
+      "path": "./state/web-cache",
+      "status": "ready",
+      "latency": "fast",
+      "role": "Browser-facing working copy"
+    },
+    {
+      "id": "container",
+      "label": "Container Mount",
+      "kind": "runtime",
+      "path": "/cartridge/state",
+      "status": "mapped",
+      "latency": "runtime-bound",
+      "role": "Portable execution membrane"
+    }
+  ],
+  "knowledgeSources": [
+    {
+      "id": "public-apis-open-data",
+      "label": "Public APIs Open Data",
+      "kind": "remote-catalog",
+      "url": "https://github.com/public-apis/public-apis#open-data",
+      "role": "Remote catalogue of free APIs with an Open Data section"
+    },
+    {
+      "id": "awesome-stars-index",
+      "label": "Awesome Stars Index",
+      "kind": "local-index",
+      "path": "C:\\Users\\chose\\Downloads\\database4\\OneDrive_Migrated-20251226-135104\\LLM-Agent-Hub\\workspace\\index\\awesome_stars.json",
+      "role": "Local curated OSS substrate and topic index"
+    },
+    {
+      "id": "discovered-memory-paths",
+      "label": "Discovered Memory Paths",
+      "kind": "local-index",
+      "path": "./sources/discovered-memory-paths.json",
+      "role": "Pinned map of local Codex, copilot-cli, and Pieces memory-bearing paths"
+    }
+  ],
+  "geometry": {
+    "rings": [
+      {
+        "label": "Core",
+        "radius": 0.18,
+        "hue": "#f7b267"
+      },
+      {
+        "label": "Mirror",
+        "radius": 0.34,
+        "hue": "#7bdff2"
+      },
+      {
+        "label": "World",
+        "radius": 0.52,
+        "hue": "#b8f2e6"
+      },
+      {
+        "label": "Transit",
+        "radius": 0.7,
+        "hue": "#f4d35e"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "receipts",
+        "label": "Receipts",
+        "angle": 12,
+        "ring": 1,
+        "weight": 0.86
+      },
+      {
+        "id": "jsonl-streams",
+        "label": "JSONL Streams",
+        "angle": 82,
+        "ring": 2,
+        "weight": 0.92
+      },
+      {
+        "id": "agent-traces",
+        "label": "Agent Traces",
+        "angle": 158,
+        "ring": 2,
+        "weight": 0.84
+      },
+      {
+        "id": "world-state",
+        "label": "World State",
+        "angle": 228,
+        "ring": 3,
+        "weight": 0.9
+      },
+      {
+        "id": "projection-surface",
+        "label": "Projection Surface",
+        "angle": 304,
+        "ring": 1,
+        "weight": 0.8
+      },
+      {
+        "id": "specialists",
+        "label": "Specialists",
+        "angle": 36,
+        "ring": 3,
+        "weight": 0.82
+      },
+      {
+        "id": "task-queue",
+        "label": "Task Queue",
+        "angle": 126,
+        "ring": 2,
+        "weight": 0.88
+      },
+      {
+        "id": "handoffs",
+        "label": "Handoffs",
+        "angle": 266,
+        "ring": 3,
+        "weight": 0.78
+      },
+      {
+        "id": "source-libraries",
+        "label": "Source Libraries",
+        "angle": 334,
+        "ring": 2,
+        "weight": 0.8
+      }
+    ]
+  },
+  "launch": {
+    "local": {
+      "command": "./start-local.ps1",
+      "serves": "http://127.0.0.1:4033"
+    },
+    "container": {
+      "command": "docker compose up --build",
+      "serves": "http://127.0.0.1:4033",
+      "volume": "./state:/cartridge/state"
+    }
+  },
+  "swarm": {
+    "middleware": "./middleware/agent-middleware.json",
+    "mode": "specialist routing",
+    "queueRoots": {
+      "inbox": "./state/local-world/inbox",
+      "outbox": "./state/local-world/outbox",
+      "receipts": "./state/local-world/receipts",
+      "swarm": "./state/local-world/swarm"
+    }
+  }
+}

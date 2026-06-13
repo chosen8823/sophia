@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World Memory Cartridge</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">Nested Memory Cartridge</div>
+      <h1>World Memory Cartridge</h1>
+      <p class="intro">
+        A mirrored world-model for memory, projection, and agent presence. Local, cloud, web,
+        and container layers stay visible as one inspectable geometry instead of disappearing into
+        a black box.
+      </p>
+      <div class="actions">
+        <a class="button primary" href="#commands">Start surface</a>
+        <a class="button secondary" href="#mirrors">Inspect mirrors</a>
+      </div>
+    </section>
+
+    <section class="layout">
+      <article class="panel geometry-panel">
+        <div class="panel-heading">
+          <h2>Projection Core</h2>
+          <span id="world-rule" class="chip">Loading world rule</span>
+        </div>
+        <canvas id="cartridge-canvas" width="900" height="900"></canvas>
+      </article>
+
+      <aside class="stack">
+        <article class="panel" id="commands">
+          <div class="panel-heading">
+            <h2>Start Instructions</h2>
+            <span class="chip">Live cartridge</span>
+          </div>
+          <div class="command-block">
+            <span>Local</span>
+            <code id="local-command">Loading...</code>
+          </div>
+          <div class="command-block">
+            <span>Container</span>
+            <code id="container-command">Loading...</code>
+          </div>
+          <div class="command-block">
+            <span>Artifact</span>
+            <code id="artifact-path">Loading...</code>
+          </div>
+          <div class="path-list" id="path-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>Desired Computer</h2>
+            <span class="chip">Working model</span>
+          </div>
+          <dl class="spec-grid" id="spec-grid"></dl>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <h2>Agent Middleware</h2>
+            <span class="chip">Specialist swarm</span>
+          </div>
+          <div class="middleware-grid" id="middleware-summary"></div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="panel mirrors-panel" id="mirrors">
+      <div class="panel-heading">
+        <h2>Mirror Topology</h2>
+        <span class="chip">Local / Cloud / Web / Container</span>
+      </div>
+      <div id="mirror-grid" class="mirror-grid"></div>
+    </section>
+
+    <section class="panel mirrors-panel" id="roots">
+      <div class="panel-heading">
+        <h2>Roots And Specialists</h2>
+        <span class="chip">Home / Downloads / Folder</span>
+      </div>
+      <div class="middleware-layout">
+        <div class="list-stack" id="root-list"></div>
+        <div class="list-stack" id="specialist-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

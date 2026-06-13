@@ -1,0 +1,11 @@
+services:
+  world-memory-cartridge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: world-memory-cartridge
+    ports:
+      - "4033:4033"
+    volumes:
+      - ./state:/cartridge/state
+    restart: unless-stopped

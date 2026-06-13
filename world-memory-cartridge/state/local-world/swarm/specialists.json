@@ -1,0 +1,126 @@
+{
+  "kind": "swarm-specialists",
+  "version": "0.1.0",
+  "updatedAt": "2026-05-03T02:00:00Z",
+  "specialists": [
+    {
+      "id": "filesystem-cartographer",
+      "label": "Filesystem Cartographer",
+      "role": "Maps roots into structured memory layers",
+      "capabilities": [
+        "scan roots",
+        "map folder topology",
+        "classify archives"
+      ],
+      "accepts": [
+        "scan-root",
+        "inventory-root"
+      ],
+      "produces": [
+        "root-map",
+        "scan-summary"
+      ],
+      "handoffTo": [
+        "source-librarian",
+        "memory-curator"
+      ],
+      "preferredMirror": "local",
+      "concurrency": 1,
+      "status": "ready"
+    },
+    {
+      "id": "source-librarian",
+      "label": "Source Librarian",
+      "role": "Curates open data catalogues and local star indices",
+      "capabilities": [
+        "map api catalogues",
+        "index curated repositories",
+        "classify source libraries"
+      ],
+      "accepts": [
+        "mount-source-catalogue",
+        "classify-index"
+      ],
+      "produces": [
+        "source-map",
+        "topic-summary"
+      ],
+      "handoffTo": [
+        "memory-curator"
+      ],
+      "preferredMirror": "local",
+      "concurrency": 1,
+      "status": "ready"
+    },
+    {
+      "id": "runtime-keeper",
+      "label": "Runtime Keeper",
+      "role": "Keeps the world folder bootable and reachable",
+      "capabilities": [
+        "choose ports",
+        "write runtime state",
+        "stabilise boot flows"
+      ],
+      "accepts": [
+        "boot-world",
+        "heal-runtime"
+      ],
+      "produces": [
+        "runtime-record",
+        "boot-receipt"
+      ],
+      "handoffTo": [
+        "projection-bridge"
+      ],
+      "preferredMirror": "local",
+      "concurrency": 1,
+      "status": "ready"
+    },
+    {
+      "id": "memory-curator",
+      "label": "Memory Curator",
+      "role": "Aligns artifacts, manifests, and mirror writes",
+      "capabilities": [
+        "sync artifacts",
+        "shape receipts",
+        "maintain world metadata"
+      ],
+      "accepts": [
+        "align-memory",
+        "write-receipt"
+      ],
+      "produces": [
+        "artifact-update",
+        "receipt"
+      ],
+      "handoffTo": [
+        "projection-bridge"
+      ],
+      "preferredMirror": "web",
+      "concurrency": 1,
+      "status": "ready"
+    },
+    {
+      "id": "projection-bridge",
+      "label": "Projection Bridge",
+      "role": "Projects the world across local, web, and cloud shadows",
+      "capabilities": [
+        "surface updates",
+        "mirror state",
+        "prepare cloud shadow"
+      ],
+      "accepts": [
+        "project-world",
+        "mirror-write"
+      ],
+      "produces": [
+        "projection-summary",
+        "mirror-receipt"
+      ],
+      "handoffTo": [],
+      "preferredMirror": "cloud",
+      "concurrency": 1,
+      "status": "ready"
+    }
+  ]
+}
