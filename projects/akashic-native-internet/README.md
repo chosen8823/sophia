@@ -117,8 +117,10 @@ The design borrows from and interoperates with mature neighboring systems and st
 - STIX 2.1 export profiles
 - ArchiveBox-style local preservation
 - MCP-style agent-native resources and tools
+- OpenSearch-style hybrid lexical/semantic retrieval
+- OpenTelemetry-style runtime observability
 
-See [`docs/STANDARDS_AND_PRIOR_ART.md`](docs/STANDARDS_AND_PRIOR_ART.md).
+See [`docs/STANDARDS_AND_PRIOR_ART.md`](docs/STANDARDS_AND_PRIOR_ART.md) and [`docs/RELATED_SYSTEMS_AND_DESIGN_PATTERNS.md`](docs/RELATED_SYSTEMS_AND_DESIGN_PATTERNS.md).
 
 ## Local-first trust boundary
 
@@ -138,7 +140,7 @@ trust level
 
 A GPU being visible does not imply exclusive ownership by a container, and lack of an NVIDIA runtime is a normal capability result rather than a fatal system condition.
 
-See [`docs/SECURITY_AND_COMPUTE.md`](docs/SECURITY_AND_COMPUTE.md).
+See [`docs/SECURITY_AND_COMPUTE.md`](docs/SECURITY_AND_COMPUTE.md) and [`docs/DEPLOYMENT_PROFILES.md`](docs/DEPLOYMENT_PROFILES.md).
 
 ## Failure is evidence
 
@@ -208,6 +210,9 @@ http://127.0.0.1:8000/v1/capabilities
 - [`docs/AI_NATIVE_PROTOCOL.md`](docs/AI_NATIVE_PROTOCOL.md) — machine query envelopes, evidence packets, contradiction model, and agent-facing resources/tools.
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — system planes, invariants, residue loop, bi-axis model.
 - [`docs/SEMANTIC_ATOMS.md`](docs/SEMANTIC_ATOMS.md) — evidence unit contract and epistemic rules.
+- [`docs/SOPHIA_STACK_CROSSWALK.md`](docs/SOPHIA_STACK_CROSSWALK.md) — direct mapping into Enterprise Sophia CRM/OSINT, OmniThread, canonical vocabulary, diagnostics, and spatial views.
+- [`docs/RELATED_SYSTEMS_AND_DESIGN_PATTERNS.md`](docs/RELATED_SYSTEMS_AND_DESIGN_PATTERNS.md) — closest public systems and the composite reference stack.
+- [`docs/DEPLOYMENT_PROFILES.md`](docs/DEPLOYMENT_PROFILES.md) — local laptop through distributed enterprise deployment profiles.
 - [`docs/STANDARDS_AND_PRIOR_ART.md`](docs/STANDARDS_AND_PRIOR_ART.md) — Common Crawl, Wayback, WARC, PROV, STIX, ArchiveBox, MCP, and adjacent Sophia architecture crosswalk.
 - [`docs/SECURITY_AND_COMPUTE.md`](docs/SECURITY_AND_COMPUTE.md) — trust boundaries, diagnostic membrane, worker capability policy.
 - [`docs/OPERATIONS_AND_OBSERVABILITY.md`](docs/OPERATIONS_AND_OBSERVABILITY.md) — telemetry, receipts, health, capability manifests, and diagnostic membrane profile.
@@ -216,7 +221,7 @@ http://127.0.0.1:8000/v1/capabilities
 
 ## Relationship to the wider Sophia stack
 
-Akashic is intended to be a substrate, not another monolith. Adjacent Sophia work already explores CRM/OSINT evidence fabrics, multi-model unified threads, canonical vocabularies, spatial/parallax views, and read-only diagnostic membranes. Akashic gives those surfaces one common historical and provenance-native evidence layer while keeping application-specific behavior above the substrate.
+Akashic is intended to be a substrate, not another monolith. Adjacent Sophia work already explores CRM/OSINT evidence fabrics, multi-model unified threads, canonical vocabularies, spatial/parallax views, Deja Vortex-style temporal/relational architecture, and read-only diagnostic membranes. Akashic gives those surfaces one common historical and provenance-native evidence layer while keeping application-specific behavior above the substrate.
 
 ## Project invariants
 
@@ -233,6 +238,6 @@ Akashic is intended to be a substrate, not another monolith. Adjacent Sophia wor
 
 ## Status
 
-The branch currently contains the first runnable skeleton: typed semantic atoms, source adapter protocols, Common Crawl and Wayback adapter shells, query fan-out, failure residue, a FastAPI surface, a production reference architecture, machine-facing protocol documentation, operational/observability guidance, and a policy-oriented source registry.
+The branch currently contains the first runnable skeleton: typed semantic atoms, source adapter protocols, Common Crawl and Wayback adapter shells, query fan-out, failure residue, a FastAPI surface, production reference architecture, machine-facing protocol documentation, public-system crosswalks, local-through-enterprise deployment profiles, operational/observability guidance, and a policy-oriented source registry.
 
 The next concrete implementation milestone is **historical body retrieval + persistent atom storage**. See the roadmap for the staged build-out.
