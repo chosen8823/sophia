@@ -185,6 +185,15 @@ pip install -e .
 uvicorn akashic.main:app --reload
 ```
 
+Optional profiles:
+
+```bash
+pip install -e '.[archive]'
+pip install -e '.[data]'
+pip install -e '.[observability]'
+pip install -e '.[all]'
+```
+
 Then inspect:
 
 ```text
@@ -194,11 +203,16 @@ http://127.0.0.1:8000/v1/capabilities
 
 ## Documentation
 
+- [`docs/README.md`](docs/README.md) — documentation map and definition of done.
+- [`docs/REFERENCE_ARCHITECTURE.md`](docs/REFERENCE_ARCHITECTURE.md) — production topology, architectural planes, shared-residue loop, temporal model, and Sophia crosswalk.
+- [`docs/AI_NATIVE_PROTOCOL.md`](docs/AI_NATIVE_PROTOCOL.md) — machine query envelopes, evidence packets, contradiction model, and agent-facing resources/tools.
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — system planes, invariants, residue loop, bi-axis model.
 - [`docs/SEMANTIC_ATOMS.md`](docs/SEMANTIC_ATOMS.md) — evidence unit contract and epistemic rules.
 - [`docs/STANDARDS_AND_PRIOR_ART.md`](docs/STANDARDS_AND_PRIOR_ART.md) — Common Crawl, Wayback, WARC, PROV, STIX, ArchiveBox, MCP, and adjacent Sophia architecture crosswalk.
 - [`docs/SECURITY_AND_COMPUTE.md`](docs/SECURITY_AND_COMPUTE.md) — trust boundaries, diagnostic membrane, worker capability policy.
+- [`docs/OPERATIONS_AND_OBSERVABILITY.md`](docs/OPERATIONS_AND_OBSERVABILITY.md) — telemetry, receipts, health, capability manifests, and diagnostic membrane profile.
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — phased path from archive retrieval to an agent-native evidence commons.
+- [`config/sources.example.yaml`](config/sources.example.yaml) — allow-list-oriented source and compute registry example.
 
 ## Relationship to the wider Sophia stack
 
@@ -219,6 +233,6 @@ Akashic is intended to be a substrate, not another monolith. Adjacent Sophia wor
 
 ## Status
 
-The branch currently contains the first runnable skeleton: typed semantic atoms, source adapter protocols, Common Crawl and Wayback adapter shells, query fan-out, failure residue, a FastAPI surface, and the initial architecture documentation.
+The branch currently contains the first runnable skeleton: typed semantic atoms, source adapter protocols, Common Crawl and Wayback adapter shells, query fan-out, failure residue, a FastAPI surface, a production reference architecture, machine-facing protocol documentation, operational/observability guidance, and a policy-oriented source registry.
 
 The next concrete implementation milestone is **historical body retrieval + persistent atom storage**. See the roadmap for the staged build-out.
