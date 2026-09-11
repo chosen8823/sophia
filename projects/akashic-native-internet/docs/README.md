@@ -8,11 +8,13 @@ This directory is the engineering map for the AI-native internet layer.
 2. [AI_NATIVE_PROTOCOL.md](AI_NATIVE_PROTOCOL.md) — machine-oriented query envelopes, evidence packets, contradictions, temporal retrieval, and agent interfaces.
 3. [SEMANTIC_ATOMS.md](SEMANTIC_ATOMS.md) — durable evidence-object contract.
 4. [SOPHIA_STACK_CROSSWALK.md](SOPHIA_STACK_CROSSWALK.md) — direct mapping from the current Drive architecture into Akashic: CRM/OSINT, OmniThread, canonical vocabulary, diagnostics, and spatial/parallax views.
-5. [ARCHITECTURE.md](ARCHITECTURE.md) — core invariants and current prototype architecture.
-6. [STANDARDS_AND_PRIOR_ART.md](STANDARDS_AND_PRIOR_ART.md) — compatibility targets and neighboring systems.
-7. [SECURITY_AND_COMPUTE.md](SECURITY_AND_COMPUTE.md) — local-first trust boundary and worker gating.
-8. [OPERATIONS_AND_OBSERVABILITY.md](OPERATIONS_AND_OBSERVABILITY.md) — telemetry, receipts, health, capability manifests, and diagnostic membrane profile.
-9. [ROADMAP.md](ROADMAP.md) — staged implementation path.
+5. [RELATED_SYSTEMS_AND_DESIGN_PATTERNS.md](RELATED_SYSTEMS_AND_DESIGN_PATTERNS.md) — Common Crawl, Wayback, WARC, Memento, PROV, STIX, ArchiveBox, MCP, OpenSearch, OpenTelemetry, and the closest Sophia-native systems.
+6. [DEPLOYMENT_PROFILES.md](DEPLOYMENT_PROFILES.md) — laptop, workstation, team/lab, and enterprise deployment shapes with storage and trust boundaries.
+7. [ARCHITECTURE.md](ARCHITECTURE.md) — core invariants and current prototype architecture.
+8. [STANDARDS_AND_PRIOR_ART.md](STANDARDS_AND_PRIOR_ART.md) — compatibility targets and neighboring systems.
+9. [SECURITY_AND_COMPUTE.md](SECURITY_AND_COMPUTE.md) — local-first trust boundary and worker gating.
+10. [OPERATIONS_AND_OBSERVABILITY.md](OPERATIONS_AND_OBSERVABILITY.md) — telemetry, receipts, health, capability manifests, and diagnostic membrane profile.
+11. [ROADMAP.md](ROADMAP.md) — staged implementation path.
 
 ## Architectural stance
 
@@ -49,6 +51,7 @@ The project intentionally interoperates with established public work instead of 
 - STIX 2.1 — optional cyber-observable export profile
 - ArchiveBox — local/self-hosted preservation patterns
 - MCP — agent-facing resource/tool transport
+- OpenSearch — hybrid lexical/semantic retrieval projection
 - OpenTelemetry — operational traces/metrics/log transport
 - Arrow/Parquet — bulk analytic projections
 - JSON-LD — linked-data interchange
@@ -63,6 +66,7 @@ The current Sophia workspace already contains useful adjacent designs:
 - OmniThread AI: shared multi-model thread, context normalization, model routing
 - Sophia Canonical Index: stable vocabulary and state-class distinctions
 - 3-Pole Atom CAD / spatial work: multiple perspectives over one shared object
+- Deja Vortex architectural work: temporal and relational multi-view reasoning
 - local diagnostic/power evidence work: read-only acquisition, cross-view correlation, capability gating
 
 The dedicated crosswalk shows exactly where those concepts land in Akashic without forcing Akashic to absorb CRM, visualization, or agent-specific behavior.
