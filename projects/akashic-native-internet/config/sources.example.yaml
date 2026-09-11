@@ -1,0 +1,77 @@
+version: 1
+
+sources:
+  commoncrawl:
+    kind: historical_web
+    enabled: true
+    trust: public_archive
+    readonly: true
+    capabilities:
+      - index_lookup
+      - warc_locator
+      - historical_capture
+    policy:
+      network_egress: allow
+      mutation: deny
+
+  wayback:
+    kind: historical_web
+    enabled: true
+    trust: public_archive
+    readonly: true
+    capabilities:
+      - cdx_lookup
+      - historical_capture
+      - timeline
+    policy:
+      network_egress: allow
+      mutation: deny
+
+  archivebox:
+    kind: local_archive
+    enabled: false
+    trust: local
+    readonly: true
+    endpoint: null
+    capabilities:
+      - local_snapshot_lookup
+      - local_capture_metadata
+    policy:
+      network_egress: local_only
+      mutation: deny
+
+  live_web:
+    kind: live_web
+    enabled: false
+    trust: external
+    readonly: true
+    capabilities:
+      - live_fetch
+    policy:
+      network_egress: allow
+      mutation: deny
+
+  diagnostic_membrane:
+    kind: local_diagnostics
+    enabled: false
+    trust: local
+    readonly: true
+    capabilities:
+      - hardware_inventory
+      - power_state
+      - event_evidence
+      - runtime_capabilities
+    policy:
+      network_egress: deny
+      mutation: deny
+
+compute:
+  default_policy: local_only
+  remote_workers_enabled: false
+  workers: []
+
+provenance:
+  digest: sha256
+  preserve_failures: true
+  preserve_contradictions: true
+  raw_evidence_addressable: true
